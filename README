@@ -1,0 +1,3 @@
+To run:
+
+`node <test markdown file> <name of output file, defaults to output.html>
