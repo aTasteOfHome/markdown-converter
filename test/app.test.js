@@ -79,6 +79,19 @@ test('test-header-fun', async () => {
     compareFileStrings(actual, expected);
 });
 
+test('test-paragraph-fun', async () => {
+    await app('test/test-paragraph-fun.md', 'test/output.html');
+    const [actualBuf, expectedBuf] = await Promise.all([
+        fs.readFile('./test/output.html'),
+        fs.readFile('./test/expected-paragraph-fun.html')
+    ]);
+
+    const actual = String(actualBuf).split('\n');
+    const expected = String(expectedBuf).split('\n');
+    
+    compareFileStrings(actual, expected);
+});
+
 test('test-html-escape', async () => {
     await app('test/test-empty.md', 'test/output.html');
     const [actualBuf, expectedBuf] = await Promise.all([

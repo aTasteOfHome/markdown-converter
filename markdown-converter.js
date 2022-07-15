@@ -67,12 +67,6 @@ class MarkdownConverter {
             ret = `<h${headerNum}>${ret}</h${headerNum}>\n`;
             await this.writeStream.write(ret);
         } else {
-            //adding leading whitespace in the case of no header
-            let counter = 0;
-            while (/\s/.test(line[counter]) && line[counter]) {
-                ret = ret.shift(line[counter]);
-            }
-
             if (!this.lines.length) {
                 ret = `<p>${ret}\n`;
             } else {
