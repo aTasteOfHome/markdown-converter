@@ -1,6 +1,19 @@
+const express = require('express');
 const fs = require('fs/promises');
 const readline = require('readline');
 const MarkdownConverter = require('./markdown-converter');
+
+const app = express();
+
+app.get('/', async (req, res) => {
+    await run();
+    res.sendFile( __dirname + "/" + "output.html");
+});
+
+app.get('/:inFilename', (req, res) => {
+    await run(req.params.inFilename);
+    res.sendFile( __dirname + "/" + "output.html");
+});
 
 //streaming to handle large files, making that lines will not be egregiously long to the point where it bricks the machine's memory
 async function run(inFilename, outFilename) {
@@ -34,5 +47,7 @@ async function run(inFilename, outFilename) {
     // then again, assuming the owner will close can also lead to madness. This problem is generally solved by
     // convention or explicit tools in the language or framework itself, but philosophies vary.
 }
+
+
 
 module.exports = run;
