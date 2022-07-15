@@ -4,23 +4,20 @@ const readline = require('readline');
 const MarkdownConverter = require('./markdown-converter');
 
 const app = express();
+const outFilename = 'testoutput.html';
 
 app.get('/', async (req, res) => {
     await run();
-    res.sendFile( __dirname + "/" + "output.html");
+    res.sendFile( __dirname + "/" + outFilename);
 });
 
-app.get('/:inFilename', (req, res) => {
+app.get('/:inFilename', async (req, res) => {
     await run(req.params.inFilename);
-    res.sendFile( __dirname + "/" + "output.html");
+    res.sendFile( __dirname + "/" + outFilename);
 });
 
 //streaming to handle large files, making that lines will not be egregiously long to the point where it bricks the machine's memory
-async function run(inFilename, outFilename) {
-    const args = process.argv.slice(2);
-    inFilename = inFilename || args[0];
-    outFilename = outFilename || args[1] || 'output.html';
-
+async function run(inFilename = 'test0.md') {
     const inFile = await fs.open(inFilename, 'r');
     const outFile = await fs.open(outFilename, 'a');
     await outFile.truncate(0);

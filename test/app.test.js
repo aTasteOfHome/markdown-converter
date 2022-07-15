@@ -29,10 +29,10 @@ function compareFileStrings(a, b) {
 }
 
 test('test0 from email', async () => {
-    await app('test/test0.md', 'test/output.html');
+    await app('test0.md', 'output.html');
     const [actualBuf, expectedBuf] = await Promise.all([
-        fs.readFile('./test/output.html'),
-        fs.readFile('./test/expected0.html')
+        fs.readFile('./output.html'),
+        fs.readFile('./expected0.html')
     ]);
 
     const actual = String(actualBuf).trim();
@@ -41,10 +41,10 @@ test('test0 from email', async () => {
 });
 
 test('test1 from email', async () => {
-    await app('test/test1.md', 'test/output.html');
+    await app('test1.md', 'output.html');
     const [actualBuf, expectedBuf] = await Promise.all([
-        fs.readFile('./test/output.html'),
-        fs.readFile('./test/expected1.html')
+        fs.readFile('./output.html'),
+        fs.readFile('./expected1.html')
     ]);
 
     const actual = String(actualBuf).split('\n');
@@ -54,10 +54,10 @@ test('test1 from email', async () => {
 });
 
 test('test-empty', async () => {
-    await app('test/test-empty.md', 'test/output.html');
+    await app('test-empty.md', 'output.html');
     const [actualBuf, expectedBuf] = await Promise.all([
-        fs.readFile('./test/output.html'),
-        fs.readFile('./test/expected-empty.html')
+        fs.readFile('./output.html'),
+        fs.readFile('./expected-empty.html')
     ]);
 
     const actual = String(actualBuf).split('\n');
@@ -67,10 +67,10 @@ test('test-empty', async () => {
 });
 
 test('test-header-fun', async () => {
-    await app('test/test-empty.md', 'test/output.html');
+    await app('test-empty.md', 'output.html');
     const [actualBuf, expectedBuf] = await Promise.all([
-        fs.readFile('./test/output.html'),
-        fs.readFile('./test/expected-header-fun.html')
+        fs.readFile('./output.html'),
+        fs.readFile('./expected-header-fun.html')
     ]);
 
     const actual = String(actualBuf).split('\n');
@@ -93,10 +93,10 @@ test('test-paragraph-fun', async () => {
 });
 
 test('test-html-escape', async () => {
-    await app('test/test-empty.md', 'test/output.html');
+    await app('test-empty.md', 'output.html');
     const [actualBuf, expectedBuf] = await Promise.all([
-        fs.readFile('./test/output.html'),
-        fs.readFile('./test/expected-html-escape.html')
+        fs.readFile('./output.html'),
+        fs.readFile('./expected-html-escape.html')
     ]);
 
     const actual = String(actualBuf).split('\n');
