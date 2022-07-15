@@ -4,7 +4,7 @@ const readline = require('readline');
 const MarkdownConverter = require('./markdown-converter');
 
 const app = express();
-const outFilename = 'testoutput.html';
+const outFilename = 'data/output.html';
 
 app.get('/', async (req, res) => {
     await run();
