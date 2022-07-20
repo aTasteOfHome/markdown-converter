@@ -41,6 +41,11 @@ class MarkdownConverter {
         let headerNum = 0;
         while (line[headerNum] === '#') {
             headerNum++;
+            //html headers only go up to 6
+            if (headerNum > 6) {
+                headerNum = 0;
+                break;
+            }
         }
     
         //represents the last index visited in the line
@@ -96,6 +101,7 @@ class MarkdownConverter {
     //generator function
     * getMarkdownLinkIndices(line) {
         let ret = {};
+        //TODO: logic here is wrong: this code will drop all text in between an end square bracket and an open paren bracket
         const charOrder = ['[', ']', '(', ')'];
         let charToSearch = 0;
         for (let i = 0; i <= line.length; i++) {
